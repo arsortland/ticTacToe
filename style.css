@@ -1,0 +1,24 @@
+html{
+    height: 100vh;
+    background-color: wheat;
+    color: black;
+}
+
+
+.gamecontainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 50vh;
+    width: 50vh;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.elem{
+    font-size: 100px;
+    display:flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
