@@ -31,15 +31,30 @@ const players = (marker) => {
 const playerX = players('X');
 const playerO = players('O');
 
-
 const displayController =(() => {
-    const myTurn = document.querySelectorAll('.elem').forEach(el => el.addEventListener('click', ()=> {
-        el.textContent = "X";
+    let i=0;
+
+    const alterneTurns = (num) => {        //returnerer alltid X siden den blir kjørt på nytt for hver gang!
+        if (num%2 ==0){
+            return playerX.getMarker();
+        }else{
+            return playerO.getMarker();
+        }
+    }
+    const myTurn = document.querySelectorAll('.elem').forEach(cell => cell.addEventListener('click', ()=> {
+        cell.textContent = alterneTurns(i);
+        i++;
+        console.log(i);
+        console.log(alterneTurns());
         console.log(gameBoard.board());
     }))
 })();
 
+function dontAllowOccupiedSpace(){
+    //Code here!
+}
 
 //check for win-condition
+//check for available and occupied spaces.
 //gameflow, alternating players
 //
