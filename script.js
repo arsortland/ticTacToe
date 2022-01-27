@@ -37,26 +37,28 @@ const displayController =(() => {
     const playerO = players('O');
 
     const alterneTurns = (num) => {
-        if (num%2 ==0){
-            return playerX.getMarker();
-        }else{
-            return playerO.getMarker();
-        }
+        let alternate = (num%2==0) ? playerX.getMarker() : playerO.getMarker();
+        return alternate;
     }
 
     const dontAllowOccupiedSpace = (space) => {
         if (space.textContent != ''){
             i--;
             return space.textContent;
-        }else{
-           return alterneTurns(i);
         }
+           return alterneTurns(i);
     }
 
     const checkForWinOrDraw = () => {       //Run new function when draw/win;
         let brd = gameBoard.board();
         if ((brd[0][0] === 'X') && (brd[1][1] === 'X') && (brd[2][2] ==='X')){
-            //continue here!
+            console.log('diagonal win');
+        }else if ((brd[0][0] === 'O') && (brd[1][1] === 'O') && (brd[2][2] ==='O')){
+            console.log('diagonal win');
+        }else if ((brd[0][2] === 'X') && (brd[1][1] === 'X') && (brd[2][0] ==='X')){
+            console.log('diagonal win');
+        }else if ((brd[0][2] === 'O') && (brd[1][1] === 'O') && (brd[2][0] ==='O')){
+            console.log('diagonal win');
         }
         for (let i=0; i<3;i++){
             if ((brd[i][0] ==='X') && (brd[i][1] === 'X') && (brd[i][2] === 'X')){
@@ -84,4 +86,4 @@ const displayController =(() => {
 
 
 
-//check for win-condition
+//make a playGame module and clean up displaycontroller?
