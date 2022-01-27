@@ -28,33 +28,60 @@ const players = (marker) => {
         getMarker,
     };
 };
-const playerX = players('X');
-const playerO = players('O');
+
+
 
 const displayController =(() => {
     let i=0;
+    const playerX = players('X');
+    const playerO = players('O');
 
-    const alterneTurns = (num) => {        //returnerer alltid X siden den blir kjørt på nytt for hver gang!
+    const alterneTurns = (num) => {
         if (num%2 ==0){
             return playerX.getMarker();
         }else{
             return playerO.getMarker();
         }
     }
-    const myTurn = document.querySelectorAll('.elem').forEach(cell => cell.addEventListener('click', ()=> {
-        cell.textContent = alterneTurns(i);
+
+    const dontAllowOccupiedSpace = (space) => {
+        if (space.textContent != ''){
+            i--;
+            return space.textContent;
+        }else{
+           return alterneTurns(i);
+        }
+    }
+
+    const checkForWinOrDraw = () => {       //Run new function when draw/win;
+        let brd = gameBoard.board();
+        if ((brd[0][0] === 'X') && (brd[1][1] === 'X') && (brd[2][2] ==='X')){
+            //continue here!
+        }
+        for (let i=0; i<3;i++){
+            if ((brd[i][0] ==='X') && (brd[i][1] === 'X') && (brd[i][2] === 'X')){
+                console.log('We have a winner! PLAYERX');
+            } else if ((brd[i][0] ==='O') && (brd[i][1] === 'O') && (brd[i][2] === 'O')){
+                console.log('We have a winner! PLAYERO');
+            }else if ((brd[0][i] ==='X') && (brd[1][i] === 'X') && (brd[2][i] === 'X')){
+                console.log('vertcal win')
+            }else if ((brd[0][i] ==='O') && (brd[1][i] === 'O') && (brd[2][i] === 'O')){
+                console.log('vertcal win')
+            }
+        }  
+    }
+
+    const takeTurn = 
+        document.querySelectorAll('.elem').forEach(cell => cell.addEventListener('click', ()=> {
+        cell.textContent = dontAllowOccupiedSpace(cell);
         i++;
-        console.log(i);
-        console.log(alterneTurns());
-        console.log(gameBoard.board());
+        checkForWinOrDraw();
+        // console.log(i);
+        // console.log(alterneTurns(i));
+        // console.log(gameBoard.board());
     }))
 })();
 
-function dontAllowOccupiedSpace(){
-    //Code here!
-}
+
 
 //check for win-condition
-//check for available and occupied spaces.
-//gameflow, alternating players
-//
