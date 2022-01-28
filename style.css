@@ -5,13 +5,17 @@ html{
 }
 body{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .header{
     display: flex;
     flex-direction: column;
+}
+
+.title{
+    text-align: center;
 }
 
 .whatchar{

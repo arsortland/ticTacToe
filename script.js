@@ -1,4 +1,3 @@
-
 const gameBoard =(() => {
     const topleft = document.getElementById('topleft');
     const topmid = document.getElementById('topmid');
@@ -15,13 +14,11 @@ const gameBoard =(() => {
         [midleft.textContent,midmid.textContent,midright.textContent],
         [botleft.textContent,botmid.textContent,botright.textContent]
     ];
-
     const clearBoard = (() =>{
         document.querySelector('.restart').addEventListener('click', ()=> {
             location.reload();
         })
     })();
-
     return {
         board,
     };
@@ -39,14 +36,16 @@ const player = (marker) => {
 
 
 const gameLogic =(() => {
-
     const player1 = player('');
     const player2 = player('');
     const circlebtn = document.querySelector('.circle');
     const crossbtn = document.querySelector('.cross');
+    const whosNext = document.querySelector('.whosturn');
+
     circlebtn.addEventListener('click', () => {
         player1.setMark('O');
         player2.setMark('X');
+        whosNext.textContent = 'Player O begins!';
         circlebtn.disabled = true;
         crossbtn.disabled = true;
         return i=0;
@@ -54,16 +53,15 @@ const gameLogic =(() => {
     crossbtn.addEventListener('click', () => {
         player1.setMark('X');
         player2.setMark('O');
+        whosNext.textContent = 'Player X begins!';
         crossbtn.disabled = true;
         circlebtn.disabled = true;
         return i=0;
     });
-
     const alterneTurns = (num) => {
         let alternate = (num%2==0) ? player1.getMarker() : player2.getMarker();
         return alternate;
     }
-
     const dontAllowOccupiedSpace = (space) => {
         if (space.textContent != ''){
             return space.textContent;
@@ -73,10 +71,8 @@ const gameLogic =(() => {
         }
         catch{
             return;
-        }
-            
+        } 
     }
-
     const checkForWinOrDraw = () => {
         try{
             if (i >= 4){
@@ -108,9 +104,7 @@ const gameLogic =(() => {
         catch{
             return;
         }
-
     }
-
     const haveWon = (res) => {
         let modal = document.getElementById('myModal');
         let modalContent = document.querySelector('.modal-content');
@@ -142,18 +136,25 @@ const gameLogic =(() => {
     return {
         dontAllowOccupiedSpace,
         checkForWinOrDraw,
+        whosNext,
     }
 })();
 
 
 const playGame = (()=> {
+    const whosNext = document.querySelector('.whosturn');
+    const nextPlayer = (cell) => {
+        if (cell.textContent ==='X'){
+           return whosNext.textContent = "Player O's turn";
+        }else if (cell.textContent === 'O'){
+           return whosNext.textContent = "Player X's turn";
+        }else if (cell.textContent === ''){
+            whosNext.textContent = 'Pick a marker to begin playing!'
+        }
+    };
     document.querySelectorAll('.elem').forEach(cell => cell.addEventListener('click', ()=> {
         cell.textContent = gameLogic.dontAllowOccupiedSpace(cell);
         gameLogic.checkForWinOrDraw();
+        nextPlayer(cell);
     }));
 })();
-
-
-//Figure out how to CPU. In player (how to use the playerfactory for it? Check TOP lecture) or gamelogic? Disable the other player? Make a new IIEFE for that and disable the other with a false/true?
-//Refactor the wincondition function????
-//
