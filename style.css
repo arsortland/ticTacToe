@@ -3,7 +3,28 @@ html{
     background-color: wheat;
     color: black;
 }
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.header{
+    display: flex;
+    flex-direction: column;
+}
+
+.whatchar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.whatplayer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .gamecontainer{
     display: grid;
@@ -22,3 +43,25 @@ html{
     justify-content: center;
     align-items: center;
 }
+
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+  }
+  
+
+  .modal-content {
+    background-color: none;
+    margin-left: auto;
+    text-align: center;
+    padding: 20px;
+  }
+  

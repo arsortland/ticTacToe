@@ -9,19 +9,36 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-
-    <div class="gamecontainer">
-        <div class="elem" id="topleft"></div>
-        <div class="elem" id="topmid"></div>
-        <div class="elem" id="topright"></div>
-        <div class="elem" id="midleft"></div>
-        <div class="elem" id="midmid"></div>
-        <div class="elem" id="midright"></div>
-        <div class="elem" id="botleft"></div>
-        <div class="elem" id="botmid"></div>
-        <div class="elem" id="botright"></div>
+    <div class="gamewindow">
+        <div class="title">Tic Tac Toe</div>
+        <div class="options">
+            <div class="whatchar">
+                <div>Pick the starting player marker:</div>
+                <div class="buttons1">
+                    <button class="cross">X</button>
+                    <button class="circle">O</button>
+                </div>
+            </div>
+        </div>
+        <div class="gamecontainer">
+            <div class="elem" id="topleft"></div>
+            <div class="elem" id="topmid"></div>
+            <div class="elem" id="topright"></div>
+            <div class="elem" id="midleft"></div>
+            <div class="elem" id="midmid"></div>
+            <div class="elem" id="midright"></div>
+            <div class="elem" id="botleft"></div>
+            <div class="elem" id="botmid"></div>
+            <div class="elem" id="botright"></div>
+        </div>
+        <div class="=clearboard">
+            <button class="restart">Restart</button>
+        </div>
     </div>
-
+    <div id="myModal" class="modal">
+        <div class="modal-content"></div>
+    </div>
+   
     
 </body>
 </html>
