@@ -107,6 +107,7 @@ const gameLogic =(() => {
             return;
         }
     }
+    //Displays the result on screen as a modal.
     const haveWon = (res) => {
         let modal = document.getElementById('myModal');
         let modalContent = document.querySelector('.modal-content');
@@ -143,6 +144,7 @@ const gameLogic =(() => {
 
 
 const playGame = (()=> {
+    //displays next player on page
     const whosNext = document.querySelector('.whosturn');
     const nextPlayer = (cell) => {
         if (cell.textContent ==='X'){
@@ -151,39 +153,10 @@ const playGame = (()=> {
            return whosNext.textContent = "Player X's turn";
         }
     };
+    //Handles the boardclicks and adds the markers.
     document.querySelectorAll('.elem').forEach(cell => cell.addEventListener('click', ()=> {
         cell.textContent = gameLogic.dontAllowOccupiedSpace(cell);
-        console.log(gameLogic.dontAllowOccupiedSpace(cell));
         gameLogic.checkForWinOrDraw();
         nextPlayer(cell);
     }));
 })();
-
-
-/**
- * When player chooses CPU ->
- * Second player is now not active -> (Make player function for that?)
- * As player 1 inputs mark a new mark is set on available space ->
- * winconditioncheck
- * repeat.
- *  */
-
-
-/**
- * Assign 2d array to DOM elements
- * assign players
- * onlick marker on DOM element and update array with new value
- * check for wincondition
- * change player
- * repeat.
- * 
- * if cpu:
- * 
- * when player click
- * change to cpu and find empty space in array and input value.
- *   */ 
-
-const playCPU = (isTrue) => { //make playerfactory set this thriugh function.
-    let rnd = Math.floor(Math.random *3);
-    gameBoard.board()[rnd][rnd] = gameLogic.player2.getMarker();
-}
