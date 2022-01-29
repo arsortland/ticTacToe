@@ -1,7 +1,8 @@
 html{
     height: 100vh;
-    background-color: wheat;
-    color: black;
+    background-color: rgb(21, 86, 109);
+    color: rgb(16, 24, 26);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 body{
     display: flex;
@@ -9,13 +10,50 @@ body{
     align-items: center;
 }
 
+button{
+    border-radius: 25px;
+    border-color: white;
+    font-size: 20px;
+    padding: 5px;
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-inline: 5px;
+    background-color: rgb(182, 100, 100)
+}
+
+.buttons1{
+    display: flex;
+    justify-content: center;
+}
+
+.cross, .circle {
+    width: 100px;
+    ;
+}
+
+.gamewindow{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
 .header{
     display: flex;
     flex-direction: column;
 }
 
+.whosturn{
+    min-height: 35px;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
 .title{
     text-align: center;
+    font-size: 40px;
 }
 
 .whatchar{
@@ -34,8 +72,8 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    height: 50vh;
-    width: 50vh;
+    height: 45vh;
+    width: 45vh;
     column-gap: 10px;
     row-gap: 10px;
 }
@@ -43,11 +81,10 @@ body{
 .elem{
     font-size: 100px;
     display:flex;
-    background-color: white;
+    background-color: rgb(208, 208, 208);
     justify-content: center;
     align-items: center;
 }
-
 
 .modal {
     display: none; 
@@ -61,11 +98,13 @@ body{
     overflow: auto; 
   }
   
-
   .modal-content {
     background-color: none;
     margin-left: auto;
+    margin-top: 12%;
     text-align: center;
     padding: 20px;
+    font-size: 100px;
+    color: rgb(48, 26, 26);
   }
   

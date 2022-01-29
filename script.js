@@ -36,26 +36,25 @@ const player = (marker) => {
 
 
 const gameLogic =(() => {
-    const player1 = player('');
-    const player2 = player('');
+    let i=0;
+    const player1 = player('X');
+    const player2 = player('O');
     const circlebtn = document.querySelector('.circle');
     const crossbtn = document.querySelector('.cross');
     const whosNext = document.querySelector('.whosturn');
 
     circlebtn.addEventListener('click', () => {
+        document.querySelectorAll('.elem').forEach(cell => cell.textContent = '');
         player1.setMark('O');
         player2.setMark('X');
         whosNext.textContent = 'Player O begins!';
-        circlebtn.disabled = true;
-        crossbtn.disabled = true;
         return i=0;
     });
     crossbtn.addEventListener('click', () => {
+        document.querySelectorAll('.elem').forEach(cell => cell.textContent = '');
         player1.setMark('X');
         player2.setMark('O');
         whosNext.textContent = 'Player X begins!';
-        crossbtn.disabled = true;
-        circlebtn.disabled = true;
         return i=0;
     });
     const alterneTurns = (num) => {
@@ -95,7 +94,10 @@ const gameLogic =(() => {
                         return haveWon('X');
                     }else if ((brd[0][i] ==='O') && (brd[1][i] === 'O') && (brd[2][i] === 'O')){
                         return haveWon('O');
-                    }else if (!brd[0].includes('') && !brd[1].includes('') && !brd[2].includes('')){
+                    }
+                }
+                for (let i=0; i<3;i++){ //moved here to check for all winpossibilites before looking for draw.
+                    if (!brd[0].includes('') && !brd[1].includes('') && !brd[2].includes('')){
                         return haveWon('draw');
                     }
                 }  
@@ -136,7 +138,6 @@ const gameLogic =(() => {
     return {
         dontAllowOccupiedSpace,
         checkForWinOrDraw,
-        whosNext,
     }
 })();
 
@@ -148,13 +149,41 @@ const playGame = (()=> {
            return whosNext.textContent = "Player O's turn";
         }else if (cell.textContent === 'O'){
            return whosNext.textContent = "Player X's turn";
-        }else if (cell.textContent === ''){
-            whosNext.textContent = 'Pick a marker to begin playing!'
         }
     };
     document.querySelectorAll('.elem').forEach(cell => cell.addEventListener('click', ()=> {
         cell.textContent = gameLogic.dontAllowOccupiedSpace(cell);
+        console.log(gameLogic.dontAllowOccupiedSpace(cell));
         gameLogic.checkForWinOrDraw();
         nextPlayer(cell);
     }));
 })();
+
+
+/**
+ * When player chooses CPU ->
+ * Second player is now not active -> (Make player function for that?)
+ * As player 1 inputs mark a new mark is set on available space ->
+ * winconditioncheck
+ * repeat.
+ *  */
+
+
+/**
+ * Assign 2d array to DOM elements
+ * assign players
+ * onlick marker on DOM element and update array with new value
+ * check for wincondition
+ * change player
+ * repeat.
+ * 
+ * if cpu:
+ * 
+ * when player click
+ * change to cpu and find empty space in array and input value.
+ *   */ 
+
+const playCPU = (isTrue) => { //make playerfactory set this thriugh function.
+    let rnd = Math.floor(Math.random *3);
+    gameBoard.board()[rnd][rnd] = gameLogic.player2.getMarker();
+}

@@ -1,22 +1,28 @@
-let arr1=[]
-for (let i=0; i<3;i++){
-    arr1.push([]);
-    for (let k=0;k<3;k++){
-        arr1[i].push(0);
-    }
-}
 
 
-const player = (name,marker) => {
-    const getMark = () => marker;
-    const getName = () => name;
-    return {
-        getName,
-        getMark,
-    };
-};
 
-const playerO = player('Mr.Miyagi', 'X');
-const playerX = player('Fiffe','O');
 
-console.log(playerX.getName());
+
+
+/**
+ * When player chooses CPU ->
+ * Second player is now not active -> (Make player function for that?)
+ * As player 1 inputs mark a new mark is set on available space ->
+ * winconditioncheck
+ * repeat.
+ *  */
+
+
+/**
+ * Assign 2d array to DOM elements
+ * assign players
+ * onlick marker on DOM element and update array with new value
+ * check for wincondition
+ * change player
+ * repeat.
+ * 
+ * if cpu:
+ * 
+ * when player click
+ * change to cpu and find empty space in array and input value.
+ *   */ 
