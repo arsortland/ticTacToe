@@ -79,7 +79,8 @@ button{
 }
 
 .elem{
-    min-height: 100px;
+    height: 130px;
+    width: 130px;
     font-size: 100px;
     display:flex;
     background-color: rgb(208, 208, 208);
